@@ -2,7 +2,7 @@
 
 {% block title %}{{ category_name }} à {{ city_name }} ({{ commune.code_postal }}) - Devis Gratuit{% endblock %}
 
-{% block meta_description %}{{ category_name }} à {{ city_name }} ({{ commune.code_postal }}). Service professionnel, intervention rapide dans le {{ dept_name }}. Devis gratuit au 04 58 10 57 19.{% endblock %}
+{% block meta_description %}{{ category_name }} à {{ city_name }} ({{ commune.code_postal }}). Service professionnel, intervention rapide dans le {{ dept_name }}. Devis gratuit au {{ phone_number }}.{% endblock %}
 
 {% block page_title %}
     {% if category_slug == 'couvreur' %}🏠{% elif category_slug == 'pisciniste' %}🏊{% elif category_slug == 'plombier' %}🔧{% elif category_slug == 'vitrier' %}🪟{% elif category_slug == 'architecte-interieur' %}🎨{% else %}👷{% endif %}
@@ -17,7 +17,7 @@
     <ol class="inline-flex items-center space-x-1 md:space-x-3" itemscope itemtype="https://schema.org/BreadcrumbList">
         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
             <a href="/" class="text-gray-700 hover:text-blue-600" itemprop="item">
-                <span itemprop="name">Accueil</span>
+                <span itemprop="name">{{ breadcrumb_home }}</span>
             </a>
             <meta itemprop="position" content="1" />
         </li>
@@ -56,11 +56,11 @@
             <h2 class="text-2xl font-bold mb-2">Besoin d'un {{ category_name.lower() }} à {{ city_name }} ?</h2>
             <p class="opacity-90">Intervention rapide • Devis gratuit • Professionnels qualifiés</p>
         </div>
-        <a href="tel:0458105719" class="flex items-center space-x-3 bg-white text-green-600 px-6 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-md">
+        <a href="tel:{{ phone_raw }}" class="flex items-center space-x-3 bg-white text-green-600 px-6 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-md">
             <i class="fas fa-phone-alt text-2xl animate-pulse"></i>
             <div>
                 <div class="text-xs text-gray-500">Appelez maintenant</div>
-                <div class="text-xl">04 58 10 57 19</div>
+                <div class="text-xl">{{ phone_number }}</div>
             </div>
         </a>
     </div>
@@ -87,15 +87,18 @@
         <div class="bg-white rounded-xl shadow-lg p-6">
             <h2 class="text-xl font-bold text-gray-800 mb-4">
                 <i class="fas fa-star text-yellow-500 mr-2"></i>
-                Notre expertise {{ category_name.lower() }}
+                {{ CITY_EXPERTISE_TITLE_TEMPLATE.replace('{profession_lower}', category_name.lower()) }}
             </h2>
             <p class="text-gray-700 leading-relaxed mb-4">
                 {{ content.expertise }}
             </p>
+            <p class="text-gray-600 italic">
+                {{ CITY_EXPERTISE_DESCRIPTION_TEMPLATE.replace('{city}', city_name) }}
+            </p>
 
             <!-- Services proposés -->
             <div class="mt-6">
-                <h3 class="font-semibold text-gray-800 mb-3">Nos services {{ category_name.lower() }} à {{ city_name }} :</h3>
+                <h3 class="font-semibold text-gray-800 mb-3">{{ CITY_SERVICES_TITLE_TEMPLATE.replace('{profession_lower}', category_name.lower()).replace('{city}', city_name) }}</h3>
                 <div class="grid sm:grid-cols-2 gap-3">
                     {% if category_slug == 'plombier' %}
                     <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Installation sanitaires</div>
@@ -132,6 +135,14 @@
                     <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Home staging</div>
                     <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Plans 3D</div>
                     <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Suivi de chantier</div>
+                    {% else %}
+                    <!-- Services génériques pour tous les autres métiers -->
+                    <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Prestations sur mesure</div>
+                    <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Conseil personnalisé</div>
+                    <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Devis gratuit</div>
+                    <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Intervention rapide</div>
+                    <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Qualité professionnelle</div>
+                    <div class="flex items-center text-gray-600"><i class="fas fa-check text-green-500 mr-2"></i>Suivi de projet</div>
                     {% endif %}
                 </div>
             </div>
@@ -246,9 +257,9 @@
         <div class="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-6 shadow-lg">
             <h3 class="text-lg font-bold mb-2">Devis gratuit</h3>
             <p class="text-sm opacity-90 mb-4">Contactez-nous pour un devis {{ category_name.lower() }} à {{ city_name }}</p>
-            <a href="tel:0458105719" class="flex items-center justify-center space-x-2 bg-white text-green-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+            <a href="tel:{{ phone_raw }}" class="flex items-center justify-center space-x-2 bg-white text-green-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
                 <i class="fas fa-phone-alt"></i>
-                <span>04 58 10 57 19</span>
+                <span>{{ phone_number }}</span>
             </a>
         </div>
 
@@ -290,7 +301,7 @@
   "@type": "LocalBusiness",
   "name": "{{ category_name }} à {{ city_name }}",
   "description": "{{ category_name }} professionnel à {{ city_name }} ({{ commune.code_postal }}). Service de qualité dans le {{ dept_name }}.",
-  "telephone": "+33458105719",
+  "telephone": "+33{{ phone_raw[1:] }}",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "{{ city_name }}",
@@ -313,9 +324,9 @@
 
 <!-- CTA Mobile Sticky -->
 <div class="fixed bottom-0 left-0 right-0 bg-green-600 text-white p-3 md:hidden z-50 shadow-lg">
-    <a href="tel:0458105719" class="flex items-center justify-center space-x-3">
+    <a href="tel:{{ phone_raw }}" class="flex items-center justify-center space-x-3">
         <i class="fas fa-phone-alt text-xl animate-pulse"></i>
-        <span class="font-bold">Appeler le 04 58 10 57 19</span>
+        <span class="font-bold">Appeler le {{ phone_number }}</span>
     </a>
 </div>
 {% endblock %}

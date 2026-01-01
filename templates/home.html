@@ -4,16 +4,16 @@
 <!-- Hero Section -->
 <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg shadow-lg p-8 mb-12 text-white">
     <div class="text-center">
-        <h1 class="text-4xl font-bold mb-4">Annuaire Professionnel du Sud-Est</h1>
-        <p class="text-xl mb-6">Trouvez les meilleurs professionnels près de chez vous</p>
-        <p class="text-lg opacity-90 mb-6">Couvreurs, Piscinistes, Plombiers, Vitriers, Architectes d'intérieur - Plus de {{ stats.total_cities }} communes référencées</p>
+        <h1 class="text-4xl font-bold mb-4">{{ hero_title }}</h1>
+        <p class="text-xl mb-6">{{ hero_subtitle }}</p>
+        <p class="text-lg opacity-90 mb-6">{% for slug, name in categories.items() %}{{ name }}{% if not loop.last %}, {% endif %}{% endfor %} - Plus de {{ stats.total_cities }} communes référencées</p>
 
         <!-- CTA Phone -->
-        <a href="tel:0458105719" class="inline-flex items-center space-x-3 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-xl transition shadow-lg">
+        <a href="tel:{{ phone_raw }}" class="inline-flex items-center space-x-3 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-xl transition shadow-lg">
             <i class="fas fa-phone-alt animate-pulse"></i>
-            <span>Appelez-nous : 04 58 10 57 19</span>
+            <span>{{ hero_cta_text }}</span>
         </a>
-        <p class="text-sm opacity-75 mt-3">Devis gratuit - Réponse sous 24h</p>
+        <p class="text-sm opacity-75 mt-3">{{ hero_cta_subtext }}</p>
     </div>
 </div>
 
@@ -69,52 +69,39 @@
 
 <!-- Why Choose Us Section -->
 <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">🌟 Pourquoi nous choisir ?</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">{{ why_choose_title }}</h2>
     <div class="grid md:grid-cols-3 gap-8">
+        {% for block in why_choose_blocks %}
         <div class="text-center">
-            <div class="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
-                <i class="fas fa-map-marker-alt text-green-600 text-2xl"></i>
+            <div class="w-16 h-16 mx-auto mb-4 bg-{{ block.color }}-100 rounded-full flex items-center justify-center">
+                <i class="fas {{ block.icon }} text-{{ block.color }}-600 text-2xl"></i>
             </div>
-            <h3 class="text-lg font-semibold mb-2">🎯 Couverture Régionale</h3>
-            <p class="text-gray-600">Spécialisés dans le Sud-Est de la France avec une connaissance approfondie des communes locales</p>
+            <h3 class="text-lg font-semibold mb-2">{{ block.title }}</h3>
+            <p class="text-gray-600">{{ block.description }}</p>
         </div>
-        <div class="text-center">
-            <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-                <i class="fas fa-users text-blue-600 text-2xl"></i>
-            </div>
-            <h3 class="text-lg font-semibold mb-2">👥 Professionnels Qualifiés</h3>
-            <p class="text-gray-600">Tous nos partenaires sont des artisans certifiés avec une expertise reconnue</p>
-        </div>
-        <div class="text-center">
-            <div class="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
-                <i class="fas fa-clock text-purple-600 text-2xl"></i>
-            </div>
-            <h3 class="text-lg font-semibold mb-2">⚡ Service Rapide</h3>
-            <p class="text-gray-600">Recherche instantanée et mise en relation rapide avec les professionnels de votre région</p>
-        </div>
+        {% endfor %}
     </div>
 </div>
 
 <!-- Regional Coverage -->
 <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">🗺️ Notre Zone de Couverture</h2>
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">{{ zone_title }}</h2>
+    <p class="text-center text-gray-600 mb-8">{{ zone_description }}</p>
     <div class="grid md:grid-cols-2 gap-8">
         <div>
-            <h3 class="text-lg font-semibold mb-4 text-blue-600">📍 Régions Couvertes</h3>
+            <h3 class="text-lg font-semibold mb-4 text-blue-600">📍 Zones Géographiques</h3>
             <ul class="space-y-2 text-gray-600">
-                <li>🏔️ <strong>Auvergne-Rhône-Alpes</strong> - Savoie, Haute-Savoie, Isère, Drôme, Ardèche</li>
-                <li>🌴 <strong>Provence-Alpes-Côte d'Azur</strong> - Alpes-Maritimes, Var, Bouches-du-Rhône</li>
-                <li>🌊 <strong>Occitanie Est</strong> - Gard, Hérault, Aude, Pyrénées-Orientales</li>
-                <li>🏔️ <strong>Hautes-Alpes</strong> - Gap, Briançon et environs</li>
+                {% for zone in geographic_zones %}
+                <li>{{ zone.icon }} <strong>{{ zone.title }}</strong> - {{ zone.description }}</li>
+                {% endfor %}
             </ul>
         </div>
         <div>
             <h3 class="text-lg font-semibold mb-4 text-blue-600">🏘️ Types de Communes</h3>
             <ul class="space-y-2 text-gray-600">
-                <li>🏙️ <strong>Centres urbains</strong> - Lyon, Marseille, Nice, Montpellier</li>
-                <li>🏘️ <strong>Villes moyennes</strong> - Annecy, Chambéry, Valence, Avignon</li>
-                <li>🏞️ <strong>Communes rurales</strong> - Villages de montagne et de campagne</li>
-                <li>🏖️ <strong>Littoral méditerranéen</strong> - Stations balnéaires et ports</li>
+                {% for coverage in coverage_types %}
+                <li>{{ coverage.icon }} <strong>{{ coverage.title }}</strong> - {{ coverage.description }}</li>
+                {% endfor %}
             </ul>
         </div>
     </div>

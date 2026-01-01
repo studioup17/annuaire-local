@@ -1,10 +1,10 @@
-# 🏠 Annuaire Professionnel Multi-Métiers - Sud-Est France
+# 🏠 Annuaire Professionnel Multi-Métiers - France Entière
 
 [![Python](https://img.shields.io/badge/Python-3.13-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-3.x-green.svg)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/License-Private-red.svg)]()
 
-> Annuaire professionnel programmatique couvrant **6 477 communes** du Sud-Est de la France, avec génération automatique de contenu SEO pour **5 catégories de métiers**.
+> Annuaire professionnel programmatique **configurable** couvrant **jusqu'à 35 000 communes** de toute la France, avec génération automatique de contenu SEO pour **un nombre illimité de métiers**.
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
@@ -44,13 +44,13 @@ Ce projet est un **générateur d'annuaire professionnel local** conçu pour le 
 
 ### Statistiques du projet
 
-| Métrique | Valeur |
-|----------|--------|
-| Communes couvertes | 6 477 |
-| Départements | 23 |
-| Régions | 3 |
-| Catégories métiers | 5 |
-| Pages générées | ~32 000+ |
+| Métrique | Valeur par défaut | Maximum possible |
+|----------|-------------------|------------------|
+| Communes couvertes | ~35 000 | ~35 000 |
+| Départements | 101 (tous) | 101 |
+| Régions | 13 (toutes) | 13 |
+| Catégories métiers | 5 (modifiable) | Illimité |
+| Pages générées | ~175 000 | Illimité |
 
 ---
 
@@ -106,6 +106,8 @@ Accueil
 
 ### Ajouter une nouvelle catégorie
 
+**Voir le guide complet :** [CONFIGURATION.md](CONFIGURATION.md)
+
 1. Modifier `config.py` :
 ```python
 CATEGORIES = {
@@ -114,56 +116,66 @@ CATEGORIES = {
 }
 ```
 
-2. Ajouter les templates dans `content_generator.py` :
-```python
-self.expertise_templates['nouveau-metier'] = [
-    "Template 1...",
-    "Template 2..."
-]
-```
+2. Ajouter les templates dans `content_generator.py` (optionnel mais recommandé)
+3. Redémarrer l'application
 
-3. Ajouter l'icône dans les templates HTML
+**Métiers prêts à activer** (déjà dans config.py, commentés) :
+- Électricien
+- Serrurier
+- Chauffagiste
+- Paysagiste
+- Peintre en bâtiment
+- Menuisier
+- Maçon
+- Carreleur
+- Charpentier
+- Ravalement de façade
 
 ---
 
 ## 🗺️ Couverture géographique
 
-### Régions couvertes
+### 🇫🇷 Tous les départements français
+
+Le projet couvre maintenant **tous les départements français** :
+- **96 départements métropolitains**
+- **5 départements d'Outre-Mer** (Guadeloupe, Martinique, Guyane, Réunion, Mayotte)
+
+**Total :** 101 départements, 13 régions, ~35 000 communes
+
+### Configuration personnalisée
+
+Vous pouvez activer/désactiver les départements dans `config.py` :
+
+```python
+DEPARTMENTS = {
+    '01': 'Ain',          # Activé
+    # '02': 'Aisne',     # Désactivé (commenté)
+    '03': 'Allier',       # Activé
+    # ...
+}
+```
+
+**Voir le guide complet :** [CONFIGURATION.md](CONFIGURATION.md)
+
+### Exemples de régions disponibles
 
 #### 🏔️ Auvergne-Rhône-Alpes (12 départements)
-| Code | Département |
-|------|-------------|
-| 01 | Ain |
-| 03 | Allier |
-| 07 | Ardèche |
-| 15 | Cantal |
-| 26 | Drôme |
-| 38 | Isère |
-| 42 | Loire |
-| 43 | Haute-Loire |
-| 63 | Puy-de-Dôme |
-| 69 | Rhône |
-| 73 | Savoie |
-| 74 | Haute-Savoie |
+Ain, Allier, Ardèche, Cantal, Drôme, Isère, Loire, Haute-Loire, Puy-de-Dôme, Rhône, Savoie, Haute-Savoie
 
 #### 🌴 Provence-Alpes-Côte d'Azur (6 départements)
-| Code | Département |
-|------|-------------|
-| 04 | Alpes-de-Haute-Provence |
-| 05 | Hautes-Alpes |
-| 06 | Alpes-Maritimes |
-| 13 | Bouches-du-Rhône |
-| 83 | Var |
-| 84 | Vaucluse |
+Alpes-de-Haute-Provence, Hautes-Alpes, Alpes-Maritimes, Bouches-du-Rhône, Var, Vaucluse
 
-#### 🌊 Occitanie Est (5 départements)
-| Code | Département |
-|------|-------------|
-| 11 | Aude |
-| 30 | Gard |
-| 34 | Hérault |
-| 48 | Lozère |
-| 66 | Pyrénées-Orientales |
+#### 🏙️ Île-de-France (8 départements)
+Paris, Seine-et-Marne, Yvelines, Essonne, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne, Val-d'Oise
+
+#### 🌊 Occitanie (13 départements)
+Ariège, Aude, Aveyron, Gard, Haute-Garonne, Gers, Hérault, Lot, Lozère, Hautes-Pyrénées, Pyrénées-Orientales, Tarn, Tarn-et-Garonne
+
+#### 🌊 Nouvelle-Aquitaine (12 départements)
+Charente, Charente-Maritime, Corrèze, Creuse, Dordogne, Gironde, Landes, Lot-et-Garonne, Pyrénées-Atlantiques, Deux-Sèvres, Vienne, Haute-Vienne
+
+**+ 9 autres régions disponibles** (voir config.py)
 
 ---
 
@@ -266,39 +278,60 @@ MEILISEARCH_KEY = 'votre_clé_secrète'
 
 ## ⚙️ Configuration
 
-### Fichier `config.py`
+### 📘 Guide complet
+
+**Voir le guide de configuration détaillé :** [CONFIGURATION.md](CONFIGURATION.md)
+
+Ce guide explique comment :
+- Modifier le numéro de téléphone
+- Activer/désactiver des départements
+- Ajouter de nouveaux métiers
+- Personnaliser le contenu généré
+
+### Configuration rapide
+
+#### 1. Numéro de téléphone
+
+Modifiez dans `config.py` :
 
 ```python
-# Configuration Meilisearch
-MEILISEARCH_URL = os.getenv('MEILISEARCH_URL', 'http://localhost:7700')
-MEILISEARCH_KEY = os.getenv('MEILISEARCH_KEY', '')
-
-# Configuration serveur
-SERVER_HOST = '0.0.0.0'  # Accessible depuis le réseau
-SERVER_PORT = 8989
-
-# Catégories métiers
-CATEGORIES = {
-    'couvreur': 'Couvreur',
-    'pisciniste': 'Pisciniste',
-    'plombier': 'Plombier',
-    'vitrier': 'Vitrier',
-    'architecte-interieur': "Architecte d'intérieur"
-}
-
-# Chemins des fichiers
-JSON_FILE = 'communes-france-avec-polygon-2025 (1).json'
-TEMPLATES_DIR = 'templates'
-STATIC_DIR = 'static'
-OUTPUT_DIR = 'generated'
+# Configuration contact
+PHONE_NUMBER = '04 58 10 57 19'      # Numéro affiché
+PHONE_NUMBER_RAW = '0458105719'      # Pour les liens tel:
 ```
 
-### Variables d'environnement
+#### 2. Départements
 
-| Variable | Description | Défaut |
-|----------|-------------|--------|
-| `MEILISEARCH_URL` | URL du serveur Meilisearch | `http://localhost:7700` |
-| `MEILISEARCH_KEY` | Clé API Meilisearch | `` |
+Activez/désactivez les départements souhaités :
+
+```python
+DEPARTMENTS = {
+    '01': 'Ain',          # Activé
+    # '02': 'Aisne',     # Désactivé (commenté)
+    '75': 'Paris',        # Activé
+    # ...
+}
+```
+
+#### 3. Métiers
+
+Ajoutez vos métiers dans `config.py` :
+
+```python
+CATEGORIES = {
+    'couvreur': 'Couvreur',
+    'plombier': 'Plombier',
+    # Ajoutez le vôtre :
+    'electricien': 'Électricien',
+}
+```
+
+#### 4. Meilisearch (optionnel)
+
+```python
+MEILISEARCH_URL = os.getenv('MEILISEARCH_URL', 'http://localhost:7700')
+MEILISEARCH_KEY = os.getenv('MEILISEARCH_KEY', '')
+```
 
 ---
 

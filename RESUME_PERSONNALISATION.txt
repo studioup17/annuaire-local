@@ -1,0 +1,261 @@
+================================================================================
+  PERSONNALISATION COMPLETE DU SITE - RESUME
+================================================================================
+
+FICHIERS MODIFIES :
+-------------------
+1. config.py                  -> Ajout de toutes les variables de personnalisation
+2. app.py                     -> Injection des variables dans tous les templates
+3. templates/home.html        -> Utilisation des variables dynamiques
+4. templates/address_detail.html -> Fil d'ariane personnalisable
+5. templates/city.html        -> Fil d'ariane personnalisable
+6. templates/category.html    -> Fil d'ariane personnalisable
+7. templates/departments.html -> Fil d'ariane personnalisable
+8. templates/department_cities.html -> Fil d'ariane personnalisable
+9. templates/sitemap_html.html -> Fil d'ariane personnalisable
+
+NOUVEAUX FICHIERS CREES :
+--------------------------
+1. PERSONNALISATION_TEXTES.md -> Guide complet de personnalisation
+2. COMMENT_REDEMARRER.md      -> Instructions de redemarrage
+3. RESUME_PERSONNALISATION.txt -> Ce fichier
+
+================================================================================
+  VARIABLES PERSONNALISABLES DANS config.py
+================================================================================
+
+1. FIL D'ARIANE (Ligne 17)
+   ------------------------
+   BREADCRUMB_HOME_TEXT = "Accueil"
+
+   Exemples :
+   - "Accueil"
+   - "Page d'accueil"
+   - "Retour a l'accueil"
+
+2. SECTION "POURQUOI NOUS CHOISIR" (Lignes 20-40)
+   -----------------------------------------------
+   WHY_CHOOSE_TITLE = "Pourquoi choisir nos professionnels ?"
+
+   WHY_CHOOSE_BLOCKS = [
+       {
+           'icon': 'fa-certificate',
+           'title': 'Qualifies & Certifies',
+           'description': 'Artisans experimentes avec garanties professionnelles',
+           'color': 'green'
+       },
+       # ... 2 autres blocs
+   ]
+
+   Icones disponibles :
+   - fa-certificate  (certification)
+   - fa-bolt         (rapidite)
+   - fa-map-marker-alt (localisation)
+   - fa-shield-alt   (protection)
+   - fa-star         (etoile)
+   - fa-check-circle (validation)
+   - fa-clock        (horloge)
+   - fa-users        (groupe)
+
+   Couleurs disponibles :
+   - green, blue, purple, red, yellow, indigo, pink, orange
+
+3. ZONE D'INTERVENTION (Lignes 43-44)
+   -----------------------------------
+   ZONE_TITLE = "Notre Zone d'Intervention"
+   ZONE_DESCRIPTION = "Nous couvrons l'ensemble des departements de Nouvelle-Aquitaine"
+
+4. ZONES GEOGRAPHIQUES (Lignes 47-58)
+   ------------------------------------
+   GEOGRAPHIC_ZONES = [
+       {
+           'title': 'Charente & Charente-Maritime',
+           'icon': 'ocean',
+           'description': 'Angouleme, La Rochelle, Saintes, Cognac et leurs environs'
+       },
+       # ... autres zones
+   ]
+
+5. TYPES DE COMMUNES (Lignes 61-82)
+   ---------------------------------
+   COVERAGE_TYPES = [
+       {
+           'title': 'Metropoles',
+           'icon': 'city',
+           'description': 'Poitiers, La Rochelle, Angouleme'
+       },
+       # ... autres types
+   ]
+
+================================================================================
+  COMMENT MODIFIER LES TEXTES ?
+================================================================================
+
+ETAPE 1 : Modifier config.py
+-----------------------------
+1. Ouvrez config.py
+2. Modifiez les variables souhaitees (lignes 17 a 82)
+3. Sauvegardez le fichier
+
+ETAPE 2 : Redemarrer l'application
+-----------------------------------
+Dans le terminal PowerShell :
+
+1. Arretez l'application :
+   Ctrl + C
+
+2. Relancez l'application :
+   python app.py
+
+ETAPE 3 : Rafraichir le navigateur
+-----------------------------------
+Dans votre navigateur :
+
+Methode 1 (rafraichissement simple) :
+   F5
+
+Methode 2 (rafraichissement avec vidage du cache) :
+   Ctrl + Shift + R  (Windows/Linux)
+   Cmd + Shift + R   (Mac)
+
+================================================================================
+  OU SONT AFFICHES CES TEXTES ?
+================================================================================
+
+FIL D'ARIANE (breadcrumb_home) :
+--------------------------------
+- Pages de categories
+- Pages de departements
+- Pages de villes
+- Fiches detaillees
+- Plan du site
+
+SECTION "POURQUOI NOUS CHOISIR" :
+----------------------------------
+- Page d'accueil uniquement
+
+ZONE D'INTERVENTION :
+---------------------
+- Page d'accueil uniquement
+
+================================================================================
+  EXEMPLES DE PERSONNALISATION
+================================================================================
+
+EXEMPLE 1 : Region Ile-de-France
+---------------------------------
+BREADCRUMB_HOME_TEXT = "Accueil IDF"
+WHY_CHOOSE_TITLE = "Pourquoi choisir nos artisans franciliens ?"
+ZONE_TITLE = "Notre Zone d'Intervention en Ile-de-France"
+ZONE_DESCRIPTION = "Nous couvrons l'ensemble des departements d'Ile-de-France"
+
+GEOGRAPHIC_ZONES = [
+    {
+        'title': 'Paris & Petite Couronne',
+        'icon': 'tower',
+        'description': 'Paris, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne'
+    },
+    {
+        'title': 'Grande Couronne',
+        'icon': 'tree',
+        'description': 'Seine-et-Marne, Yvelines, Essonne, Val-d\'Oise'
+    }
+]
+
+EXEMPLE 2 : Region PACA
+------------------------
+BREADCRUMB_HOME_TEXT = "Accueil"
+WHY_CHOOSE_TITLE = "Pourquoi faire appel a nos artisans du Sud ?"
+ZONE_TITLE = "Couverture Provence-Alpes-Cote d'Azur"
+ZONE_DESCRIPTION = "Du littoral mediterraneen aux Alpes du Sud"
+
+GEOGRAPHIC_ZONES = [
+    {
+        'title': 'Cote d\'Azur',
+        'icon': 'beach',
+        'description': 'Nice, Cannes, Antibes, Menton'
+    },
+    {
+        'title': 'Bouches-du-Rhone',
+        'icon': 'anchor',
+        'description': 'Marseille, Aix-en-Provence, Arles'
+    }
+]
+
+================================================================================
+  EN CAS DE PROBLEME
+================================================================================
+
+ERREUR : SyntaxError
+--------------------
+Cause : Erreur de syntaxe Python dans config.py
+Solution :
+- Verifiez les virgules
+- Verifiez les crochets/accolades fermees
+- Verifiez les guillemets
+
+ERREUR : Le numero ne change pas
+---------------------------------
+Cause : Application pas redemarree ou cache navigateur
+Solution :
+1. Ctrl + C
+2. python app.py
+3. Ctrl + Shift + R (vidage cache)
+
+ERREUR : L'application se ferme
+--------------------------------
+Cause : Terminal ferme
+Solution :
+1. Rouvrez PowerShell
+2. .\venv\Scripts\Activate.ps1
+3. python app.py
+
+================================================================================
+  FICHIERS DE DOCUMENTATION
+================================================================================
+
+1. PERSONNALISATION_TEXTES.md
+   -> Guide complet avec exemples detailles
+
+2. COMMENT_REDEMARRER.md
+   -> Instructions de redemarrage
+
+3. AJOUTER_METIER.md
+   -> Guide pour ajouter un nouveau metier
+
+4. CONFIGURATION.md
+   -> Guide de configuration generale
+
+5. DEPLOIEMENT_NETLIFY.md
+   -> Guide de deploiement (Vercel recommande)
+
+6. LISTE_DEPARTEMENTS.txt
+   -> Liste de tous les departements francais
+
+7. GITHUB_GUIDE.md
+   -> Guide pour mettre le projet sur GitHub
+
+================================================================================
+  RESUME RAPIDE
+================================================================================
+
+Pour modifier les textes du site :
+
+1. Ouvrez config.py
+2. Modifiez les lignes 17 a 82
+3. Ctrl + C
+4. python app.py
+5. F5
+
+C'EST TOUT ! :)
+
+================================================================================
+  BESOIN D'AIDE ?
+================================================================================
+
+Consultez les fichiers de documentation :
+- PERSONNALISATION_TEXTES.md  -> Exemples detailles
+- COMMENT_REDEMARRER.md       -> Instructions de redemarrage
+- config.py                   -> Fichier de configuration complet
+
+================================================================================

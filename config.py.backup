@@ -41,7 +41,7 @@ WHY_CHOOSE_BLOCKS = [
 
 # Zone d'intervention (s'adapte automatiquement à vos départements)
 ZONE_TITLE = "Notre Zone d'Intervention"
-# ZONE_DESCRIPTION sera définie automatiquement plus bas
+ZONE_DESCRIPTION = f"Nous couvrons l'ensemble de la région {AUTO_REGION_NAME}"  # S'adapte automatiquement
 
 # ============================================================================
 # ZONES GEOGRAPHIQUES ET TYPES DE COMMUNES
@@ -97,7 +97,7 @@ COVERAGE_TYPES_MANUAL = [
 # Page d'accueil - Hero Section (s'adapte automatiquement à vos départements et métiers)
 # Laissez ces variables telles quelles, elles s'adapteront automatiquement !
 # Vous pouvez aussi les personnaliser si vous le souhaitez
-# HERO_TITLE sera défini automatiquement plus bas
+HERO_TITLE = f"Annuaire Professionnel {AUTO_REGION_NAME}"  # S'adapte automatiquement
 HERO_SUBTITLE = "Trouvez les meilleurs professionnels près de chez vous"
 HERO_CTA_TEXT = "Appelez-nous : {phone_number}"
 HERO_CTA_SUBTEXT = "Devis gratuit - Réponse sous 24h"
@@ -210,7 +210,8 @@ def _get_regions_from_departments():
     else:
         return "France"
 
-# AUTO_REGION_NAME sera défini après DEPARTMENTS (ligne 295+)
+# Génération automatique du nom de région
+AUTO_REGION_NAME = _get_regions_from_departments()
 
 # Fonction pour générer automatiquement les zones géographiques
 def _get_auto_geographic_zones():
@@ -289,10 +290,3 @@ DEPARTMENTS = {
 # Ces variables utilisent la logique automatique ou manuelle selon USE_AUTO_ZONES
 GEOGRAPHIC_ZONES = _get_auto_geographic_zones() if USE_AUTO_ZONES else GEOGRAPHIC_ZONES_MANUAL
 COVERAGE_TYPES = _get_auto_coverage_types() if USE_AUTO_ZONES else COVERAGE_TYPES_MANUAL
-
-# Génération automatique du nom de région
-AUTO_REGION_NAME = _get_regions_from_departments()
-
-# Variables qui s'adaptent automatiquement à vos départements
-HERO_TITLE = f"Annuaire Professionnel {AUTO_REGION_NAME}"
-ZONE_DESCRIPTION = f"Nous couvrons l'ensemble de la région {AUTO_REGION_NAME}"

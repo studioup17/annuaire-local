@@ -1,5 +1,5 @@
 import random
-from config import CATEGORIES
+from config import CATEGORIES, PHONE_NUMBER
 
 class ContentGenerator:
     """Générateur de contenu spinné pour les fiches détaillées"""
@@ -44,6 +44,12 @@ class ContentGenerator:
                 "Transformez votre intérieur à {city} grâce à l'expertise d'un architecte d'intérieur local. Dans le secteur du {postal_code}, nos professionnels créent des espaces de vie uniques, fonctionnels et à votre image.",
                 "L'architecture d'intérieur à {city} ({postal_code}) prend une nouvelle dimension avec des experts passionnés. Conception sur-mesure, optimisation d'espace et décoration tendance : confiez votre projet à des professionnels certifiés.",
                 "Besoin de repenser l'agencement de votre appartement ou maison à {city} ? Les architectes d'intérieur du {postal_code} combinent esthétique et fonctionnalité pour créer l'intérieur de vos rêves."
+            ],
+            'graphiste': [
+                "Vous cherchez un graphiste talentueux à {city} ? Les professionnels du design graphique du {postal_code} créent votre identité visuelle, logos, supports print et digitaux avec créativité et professionnalisme.",
+                "À {city}, les graphistes du secteur {postal_code} vous accompagnent dans tous vos projets de communication visuelle : création de logo, charte graphique, packaging, webdesign, motion design.",
+                "Besoin de supports de communication impactants à {city} ({postal_code}) ? Faites confiance aux graphistes locaux pour sublimer votre image de marque avec des créations originales et mémorables.",
+                "Les graphistes de {city} allient créativité et expertise technique. Dans le {postal_code}, des professionnels passionnés transforment vos idées en visuels percutants pour tous vos supports de communication."
             ]
         }
 
@@ -115,6 +121,12 @@ class ContentGenerator:
                 "Dans le secteur du {postal_code}, les professionnels de l'architecture d'intérieur excellent dans l'art de sublimer les espaces contraints. Maîtres du home staging, de la rénovation d'appartements anciens et de l'optimisation des petites surfaces, ils créent des intérieurs fonctionnels sans sacrifier l'esthétique. Leur réseau d'artisans locaux qualifiés assure une exécution irréprochable de chaque projet.",
                 "Les spécialistes en architecture d'intérieur de {city} proposent un accompagnement sur-mesure : diagnostic de vos besoins, élaboration de moodboards inspirants, modélisation 3D photoréaliste, sélection de mobilier et objets déco, et suivi de chantier rigoureux. Leur expertise s'étend du résidentiel haut de gamme aux espaces professionnels : bureaux, commerces, hôtels et restaurants.",
                 "Faire appel à un architecte d'intérieur à {city} ({postal_code}), c'est bénéficier d'un regard expert pour repenser votre habitat. Ces professionnels certifiés maîtrisent les normes d'accessibilité, les contraintes techniques du bâti ancien comme contemporain, et les solutions éco-responsables. Leur objectif : créer des lieux de vie harmonieux qui vous ressemblent, tout en valorisant votre patrimoine immobilier."
+            ],
+            'graphiste': [
+                "Les graphistes de {city} créent des identités visuelles percutantes pour les entreprises et les professionnels du {postal_code}. Logos, chartes graphiques, supports de communication print et digital : ils maîtrisent tous les aspects du design graphique moderne.",
+                "Dans le secteur du {postal_code}, les professionnels du graphisme proposent des solutions créatives adaptées à tous les budgets. De la startup au grand compte, les graphistes de {city} accompagnent vos projets de communication visuelle avec expertise et créativité.",
+                "Les spécialistes en design graphique de {city} excellent dans l'art de traduire votre message en visuels impactants. Packaging, supports publicitaires, webdesign, motion design : leur polyvalence assure une cohérence graphique sur tous vos supports.",
+                "Faire appel à un graphiste à {city} ({postal_code}), c'est garantir une image professionnelle et mémorable pour votre marque. Ces créatifs maîtrisent les derniers outils Adobe et les tendances du design contemporain pour vous démarquer de la concurrence."
             ]
         }
 
@@ -129,25 +141,25 @@ class ContentGenerator:
         # Templates de conclusion spécifiques par catégorie
         self.conclusion_templates_by_category = {
             'plombier': [
-                "Pour tous vos besoins en plomberie à {city}, contactez dès maintenant un professionnel du {postal_code}. Devis gratuit et sans engagement, intervention rapide pour vos urgences. Appelez le 04 58 10 57 19.",
+                "Pour tous vos besoins en plomberie à {city}, contactez dès maintenant un professionnel du {postal_code}. Devis gratuit et sans engagement, intervention rapide pour vos urgences. Appelez le {phone_number}.",
                 "Les plombiers de {city} sont disponibles 7j/7 pour vos dépannages urgents. Dans le {postal_code}, vous bénéficiez d'un service de proximité réactif et professionnel. Demandez votre devis gratuit dès aujourd'hui.",
                 "Ne restez pas avec une fuite d'eau ou une canalisation bouchée. Les plombiers de {city} ({postal_code}) interviennent dans les plus brefs délais. Contactez-nous pour un diagnostic gratuit.",
                 "Faites confiance aux artisans plombiers de {city} pour tous vos travaux. Du simple dépannage à la rénovation complète, le {postal_code} dispose de professionnels qualifiés à votre écoute."
             ],
             'couvreur': [
-                "Protégez votre maison avec un couvreur professionnel à {city}. Contactez les artisans du {postal_code} pour un diagnostic gratuit de votre toiture. Devis sans engagement au 04 58 10 57 19.",
+                "Protégez votre maison avec un couvreur professionnel à {city}. Contactez les artisans du {postal_code} pour un diagnostic gratuit de votre toiture. Devis sans engagement au {phone_number}.",
                 "Les couvreurs de {city} assurent l'étanchéité et la longévité de votre toit. Dans le {postal_code}, profitez d'un service de qualité avec des matériaux durables. Demandez votre devis gratuit.",
                 "Votre toiture mérite les meilleurs soins. Les couvreurs de {city} ({postal_code}) interviennent pour tous vos travaux : réparation, rénovation, isolation. Contactez-nous pour une inspection gratuite.",
                 "Ne négligez pas l'entretien de votre toiture. Les artisans couvreurs de {city} vous accompagnent toute l'année. Le {postal_code} bénéficie d'experts reconnus pour leur savoir-faire."
             ],
             'pisciniste': [
-                "Réalisez votre rêve de piscine à {city}. Contactez les piscinistes du {postal_code} pour une étude personnalisée gratuite. Devis sur mesure au 04 58 10 57 19.",
+                "Réalisez votre rêve de piscine à {city}. Contactez les piscinistes du {postal_code} pour une étude personnalisée gratuite. Devis sur mesure au {phone_number}.",
                 "Les piscinistes de {city} vous accompagnent de A à Z dans votre projet. Construction, entretien, rénovation : le {postal_code} compte des experts passionnés. Demandez votre devis gratuit.",
                 "Profitez de votre jardin avec une piscine sur mesure à {city} ({postal_code}). Nos piscinistes vous conseillent sur les meilleures solutions adaptées à votre terrain et votre budget.",
                 "Votre piscine mérite les meilleurs soins. Les spécialistes de {city} assurent l'entretien et la rénovation de votre bassin. Le {postal_code} dispose d'un service réactif toute l'année."
             ],
             'vitrier': [
-                "Vitrage cassé à {city} ? Contactez un vitrier du {postal_code} pour une intervention rapide. Devis gratuit et remplacement dans la journée. Appelez le 04 58 10 57 19.",
+                "Vitrage cassé à {city} ? Contactez un vitrier du {postal_code} pour une intervention rapide. Devis gratuit et remplacement dans la journée. Appelez le {phone_number}.",
                 "Les vitriers de {city} interviennent en urgence pour sécuriser votre habitat ou commerce. Dans le {postal_code}, bénéficiez d'un service professionnel 7j/7. Demandez votre devis gratuit.",
                 "Pour tous vos travaux de vitrerie à {city} ({postal_code}), faites appel à des artisans qualifiés. Double vitrage, miroiterie, vitrine : nos experts sont à votre service.",
                 "Améliorez l'isolation de votre logement avec un vitrier de {city}. Le {postal_code} compte des spécialistes du double et triple vitrage. Contactez-nous pour un devis gratuit."
@@ -157,8 +169,40 @@ class ContentGenerator:
                 "Les architectes d'intérieur de {city} sont à votre disposition pour donner vie à vos idées. Du simple relooking à la rénovation totale, les professionnels du {postal_code} s'adaptent à tous les budgets et à toutes les envies. Demandez votre devis personnalisé dès aujourd'hui.",
                 "Vous méritez un intérieur qui vous ressemble. À {city} ({postal_code}), les architectes d'intérieur locaux mettent leur expertise à votre service pour créer des espaces uniques, fonctionnels et esthétiques. Premier rendez-vous offert pour discuter de votre projet.",
                 "Ne laissez plus votre décoration au hasard. Les professionnels de l'architecture d'intérieur à {city} vous accompagnent pour optimiser chaque mètre carré de votre habitat. Prenez rendez-vous avec un expert du {postal_code} et découvrez le potentiel de votre espace."
+            ],
+            'graphiste': [
+                "Besoin d'un logo ou d'une identité visuelle à {city} ? Contactez un graphiste professionnel du {postal_code} pour un devis gratuit. Créativité, réactivité et tarifs adaptés à votre budget. Appelez le {phone_number}.",
+                "Les graphistes de {city} créent vos supports de communication avec professionnalisme. Dans le {postal_code}, bénéficiez d'un service personnalisé pour tous vos besoins graphiques : print, web, motion design. Demandez votre devis gratuit dès aujourd'hui.",
+                "Donnez de l'impact à votre communication visuelle avec un graphiste de {city} ({postal_code}). Des créatifs talentueux vous accompagnent de la conception à la livraison. Premier échange gratuit pour définir votre projet.",
+                "Démarquez-vous avec une identité visuelle unique créée par les graphistes de {city}. Le {postal_code} regroupe des professionnels créatifs et rigoureux pour sublimer votre image de marque. Contactez-nous pour un devis personnalisé."
             ]
         }
+
+    def _generate_auto_intro(self, profession, profession_lower):
+        """Génère automatiquement des intros pour un métier sans templates"""
+        return [
+            f"Vous recherchez un {profession_lower} qualifié à {{city}} ? Les professionnels du {{postal_code}} interviennent rapidement pour tous vos besoins en {profession_lower}.",
+            f"À {{city}}, les {profession_lower}s du secteur {{postal_code}} sont reconnus pour leur professionnalisme et leur savoir-faire.",
+            f"Faites appel à un {profession_lower} de confiance à {{city}} ({{postal_code}}). Devis gratuit et intervention rapide garantis.",
+            f"Les {profession_lower}s de {{city}} mettent leur expertise à votre service. Dans le {{postal_code}}, profitez d'un service de qualité."
+        ]
+
+    def _generate_auto_expertise(self, profession, profession_lower):
+        """Génère automatiquement l'expertise pour un métier sans templates"""
+        return [
+            f"Les {profession_lower}s de {{city}} maîtrisent parfaitement leur métier et vous garantissent des prestations de qualité.",
+            f"Dans le secteur du {{postal_code}}, les professionnels {profession_lower}s proposent des solutions adaptées à tous vos besoins.",
+            f"Les spécialistes de {{city}} assurent un service complet et personnalisé pour vos projets."
+        ]
+
+    def _generate_auto_conclusion(self, profession, profession_lower):
+        """Génère automatiquement des conclusions pour un métier sans templates"""
+        return [
+            f"Pour tous vos besoins en {profession_lower} à {{city}}, contactez dès maintenant un professionnel du {{postal_code}}. Devis gratuit et sans engagement. Appelez le {{phone_number}}.",
+            f"Les {profession_lower}s de {{city}} sont à votre disposition pour répondre à vos demandes. Dans le {{postal_code}}, bénéficiez d'un service de proximité réactif. Demandez votre devis gratuit.",
+            f"Faites confiance aux professionnels de {{city}} pour tous vos projets. Le {{postal_code}} dispose de {profession_lower}s qualifiés et expérimentés.",
+            f"Ne cherchez plus ! Les {profession_lower}s de {{city}} ({{postal_code}}) vous accompagnent avec professionnalisme. Contactez-nous pour un devis personnalisé."
+        ]
 
     def generate_content(self, commune_data):
         """Génère le contenu complet pour une fiche commune"""
@@ -170,14 +214,17 @@ class ContentGenerator:
             'city': commune_data['nom_commune'],
             'postal_code': commune_data['code_postal'],
             'profession': profession,
-            'profession_lower': profession_lower
+            'profession_lower': profession_lower,
+            'phone_number': PHONE_NUMBER
         }
 
-        # Sélection des templates selon la catégorie
+        # Sélection des templates selon la catégorie (avec génération auto si nécessaire)
         if category in self.intro_templates_by_category:
             intro = random.choice(self.intro_templates_by_category[category])
         else:
-            intro = random.choice(self.intro_templates)
+            # Génération automatique pour métiers sans templates
+            auto_intros = self._generate_auto_intro(profession, profession_lower)
+            intro = random.choice(auto_intros)
 
         if category in self.description_templates_by_category:
             description = random.choice(self.description_templates_by_category[category])
@@ -187,12 +234,22 @@ class ContentGenerator:
         if category in self.conclusion_templates_by_category:
             conclusion = random.choice(self.conclusion_templates_by_category[category])
         else:
-            conclusion = random.choice(self.conclusion_templates)
+            # Génération automatique pour métiers sans templates
+            auto_conclusions = self._generate_auto_conclusion(profession, profession_lower)
+            conclusion = random.choice(auto_conclusions)
+
+        # Expertise avec génération auto si nécessaire
+        if category in self.expertise_templates:
+            expertise = random.choice(self.expertise_templates[category])
+        else:
+            # Génération automatique pour métiers sans templates
+            auto_expertise = self._generate_auto_expertise(profession, profession_lower)
+            expertise = random.choice(auto_expertise)
 
         content = {
             'intro': intro.format(**variables),
             'description': description.format(**variables),
-            'expertise': random.choice(self.expertise_templates[category]).format(**variables),
+            'expertise': expertise.format(**variables),
             'conclusion': conclusion.format(**variables)
         }
 

@@ -9,6 +9,30 @@ data_processor = DataProcessor()
 data_processor.process_addresses()  # Charger les données au démarrage
 content_generator = ContentGenerator()
 
+@app.context_processor
+def inject_globals():
+    """Injecte les variables globales dans tous les templates"""
+    return {
+        'categories': CATEGORIES,
+        'phone_number': PHONE_NUMBER,
+        'phone_raw': PHONE_NUMBER_RAW,
+        'breadcrumb_home': BREADCRUMB_HOME_TEXT,
+        'why_choose_title': WHY_CHOOSE_TITLE,
+        'why_choose_blocks': WHY_CHOOSE_BLOCKS,
+        'zone_title': ZONE_TITLE,
+        'zone_description': ZONE_DESCRIPTION,
+        'geographic_zones': GEOGRAPHIC_ZONES,
+        'coverage_types': COVERAGE_TYPES,
+        'hero_title': HERO_TITLE,
+        'hero_subtitle': HERO_SUBTITLE,
+        'hero_cta_text': HERO_CTA_TEXT.format(phone_number=PHONE_NUMBER),
+        'hero_cta_subtext': HERO_CTA_SUBTEXT,
+        'category_why_choose_title': CATEGORY_WHY_CHOOSE_TITLE,
+        'category_faq_title': CATEGORY_FAQ_TITLE,
+        'category_zone_title': CATEGORY_ZONE_TITLE,
+        'default_faq': [{'question': faq['question'], 'answer': faq['answer'].format(phone_number=PHONE_NUMBER)} for faq in DEFAULT_FAQ]
+    }
+
 @app.route('/')
 def home():
     """Page d'accueil"""
@@ -176,7 +200,10 @@ def city_page(category_slug, city_slug):
                          same_dept_communes=same_dept_communes,
                          dept_code=dept_code,
                          dept_name=dept_name,
-                         addresses=[commune_data])
+                         addresses=[commune_data],
+                         CITY_EXPERTISE_TITLE_TEMPLATE=CITY_EXPERTISE_TITLE_TEMPLATE,
+                         CITY_EXPERTISE_DESCRIPTION_TEMPLATE=CITY_EXPERTISE_DESCRIPTION_TEMPLATE,
+                         CITY_SERVICES_TITLE_TEMPLATE=CITY_SERVICES_TITLE_TEMPLATE)
 
 @app.route('/sitemap')
 def sitemap():

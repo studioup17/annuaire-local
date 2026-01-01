@@ -1,0 +1,495 @@
+================================================================================
+  TOUTES LES PERSONNALISATIONS DISPONIBLES - RECAPITULATIF COMPLET
+================================================================================
+
+FICHIER DE CONFIGURATION : config.py
+TOUT SE CONFIGURE DANS CE FICHIER UNIQUE !
+
+================================================================================
+  1. INFORMATIONS DE CONTACT
+================================================================================
+
+Lignes 12-13 :
+--------------
+PHONE_NUMBER = '0665137710'
+PHONE_NUMBER_RAW = '0665137710'
+
+Utilisation : Partout sur le site (header, footer, boutons d'appel, textes)
+
+================================================================================
+  2. FIL D'ARIANE (BREADCRUMB)
+================================================================================
+
+Ligne 17 :
+----------
+BREADCRUMB_HOME_TEXT = "Accueil"
+
+Utilisation : Sur toutes les pages (categories, departements, villes, fiches)
+
+Exemples :
+- "Accueil"
+- "Page d'accueil"
+- "Retour"
+- "Home"
+
+================================================================================
+  3. PAGE D'ACCUEIL - SECTION "POURQUOI NOUS CHOISIR"
+================================================================================
+
+Lignes 20-40 :
+--------------
+WHY_CHOOSE_TITLE = "Pourquoi choisir nos professionnels ?"
+
+WHY_CHOOSE_BLOCKS = [
+    {
+        'icon': 'fa-certificate',
+        'title': 'Qualifies & Certifies',
+        'description': 'Artisans experimentes avec garanties professionnelles',
+        'color': 'green'
+    },
+    {
+        'icon': 'fa-bolt',
+        'title': 'Intervention Rapide',
+        'description': 'Devis gratuits et interventions dans les meilleurs delais',
+        'color': 'blue'
+    },
+    {
+        'icon': 'fa-map-marker-alt',
+        'title': 'Proximite',
+        'description': 'Professionnels locaux dans tous les departements',
+        'color': 'purple'
+    }
+]
+
+Utilisation : Page d'accueil uniquement
+
+Icones disponibles :
+- fa-certificate, fa-bolt, fa-map-marker-alt, fa-shield-alt, fa-star,
+  fa-check-circle, fa-clock, fa-users, fa-phone-alt, fa-wrench, fa-home
+
+Couleurs disponibles :
+- green, blue, purple, red, yellow, indigo, pink, orange
+
+================================================================================
+  4. PAGE D'ACCUEIL - ZONE D'INTERVENTION
+================================================================================
+
+Lignes 43-82 :
+--------------
+ZONE_TITLE = "Notre Zone d'Intervention"
+ZONE_DESCRIPTION = "Nous couvrons l'ensemble des departements de Nouvelle-Aquitaine"
+
+GEOGRAPHIC_ZONES = [
+    {
+        'title': 'Charente & Charente-Maritime',
+        'icon': 'ocean emoji',
+        'description': 'Angouleme, La Rochelle, Saintes, Cognac et leurs environs'
+    },
+    # ... autres zones
+]
+
+COVERAGE_TYPES = [
+    {
+        'title': 'Metropoles',
+        'icon': 'city emoji',
+        'description': 'Poitiers, La Rochelle, Angouleme'
+    },
+    # ... autres types
+]
+
+Utilisation : Page d'accueil uniquement
+
+================================================================================
+  5. PAGE D'ACCUEIL - HERO SECTION
+================================================================================
+
+Lignes 85-88 :
+--------------
+HERO_TITLE = "Annuaire Professionnel de Nouvelle-Aquitaine"
+HERO_SUBTITLE = "Trouvez les meilleurs professionnels pres de chez vous"
+HERO_CTA_TEXT = "Appelez-nous : {phone_number}"
+HERO_CTA_SUBTEXT = "Devis gratuit - Reponse sous 24h"
+
+Variables automatiques :
+- {phone_number} : Remplace par votre numero de telephone
+
+Utilisation : En haut de la page d'accueil
+
+Exemples :
+HERO_TITLE = "Artisans Ile-de-France"
+HERO_SUBTITLE = "Les meilleurs professionnels franciliens"
+HERO_CTA_TEXT = "Contactez-nous : {phone_number}"
+HERO_CTA_SUBTEXT = "Intervention rapide - Devis gratuit"
+
+================================================================================
+  6. PAGES CATEGORIES - SECTIONS
+================================================================================
+
+Lignes 91-93 :
+--------------
+CATEGORY_WHY_CHOOSE_TITLE = "Pourquoi choisir nos professionnels ?"
+CATEGORY_FAQ_TITLE = "Questions Frequentes"
+CATEGORY_ZONE_TITLE = "Notre Zone d'Intervention"
+
+Utilisation : Sur toutes les pages categories (/category/graphiste)
+
+Sections affichees sur les pages categories :
+1. "Pourquoi nous choisir" avec les 3 blocs (WHY_CHOOSE_BLOCKS)
+2. FAQ avec les questions/reponses (DEFAULT_FAQ)
+3. Zone d'intervention (GEOGRAPHIC_ZONES + COVERAGE_TYPES)
+
+================================================================================
+  7. PAGES CATEGORIES - FAQ (QUESTIONS FREQUENTES)
+================================================================================
+
+Lignes 96-113 :
+---------------
+DEFAULT_FAQ = [
+    {
+        'question': "Quels sont vos tarifs ?",
+        'answer': "Nos tarifs varient selon la nature des travaux..."
+    },
+    {
+        'question': "Intervenez-vous en urgence ?",
+        'answer': "Oui, nos professionnels sont disponibles... {phone_number}..."
+    },
+    {
+        'question': "Etes-vous assures ?",
+        'answer': "Tous nos professionnels disposent des assurances obligatoires..."
+    },
+    {
+        'question': "Dans quels delais intervenez-vous ?",
+        'answer': "Nous nous engageons a vous repondre sous 24h..."
+    }
+]
+
+Variables automatiques :
+- {phone_number} : Remplace par votre numero
+
+Utilisation : Sur toutes les pages categories
+
+Conseils :
+- 3 a 5 questions recommandees
+- Questions courtes et claires
+- Reponses concises (2-3 phrases max)
+- Utilisez {phone_number} pour inciter a l'appel
+
+================================================================================
+  8. PAGES VILLES - SECTIONS EXPERTISE ET SERVICES
+================================================================================
+
+Lignes 116-118 :
+----------------
+CITY_EXPERTISE_TITLE_TEMPLATE = "Notre expertise {profession_lower}"
+CITY_EXPERTISE_DESCRIPTION_TEMPLATE = "Les specialistes de {city} assurent un service complet et personnalise pour vos projets."
+CITY_SERVICES_TITLE_TEMPLATE = "Nos services {profession_lower} a {city}"
+
+Variables automatiques :
+- {profession_lower} : Nom du metier en minuscules (ex: "graphiste")
+- {city} : Nom de la ville (ex: "Angouleme")
+
+Utilisation : Sur toutes les pages villes (/address/graphiste/angouleme)
+
+Exemples :
+CITY_EXPERTISE_TITLE_TEMPLATE = "Expertise {profession_lower} locale"
+CITY_EXPERTISE_DESCRIPTION_TEMPLATE = "A {city}, nos artisans combinent tradition et innovation."
+CITY_SERVICES_TITLE_TEMPLATE = "Prestations {profession_lower} disponibles a {city}"
+
+================================================================================
+  9. METIERS (CATEGORIES)
+================================================================================
+
+Lignes 123-130 :
+----------------
+CATEGORIES = {
+    'graphiste': 'Graphiste',
+    'directeur artistique': 'Directeur artistique',
+    'web designer': 'Web designer',
+    # ... autres metiers
+}
+
+Format : 'slug-url': 'Nom affiche'
+
+Pour ajouter un metier :
+1. Ajoutez une ligne : 'electricien': 'Electricien',
+2. Optionnel : Ajoutez des templates dans content_generator.py
+3. Redemarrez l'application
+
+================================================================================
+  10. DEPARTEMENTS
+================================================================================
+
+Lignes 107+ :
+-------------
+DEPARTMENTS = {
+    '16': 'Charente',
+    '17': 'Charente-Maritime',
+    '79': 'Deux-Sevres',
+    '86': 'Vienne',
+}
+
+Pour ajouter un departement :
+1. Ajoutez une ligne : '33': 'Gironde',
+2. Redemarrez l'application
+
+Liste complete disponible dans LISTE_DEPARTEMENTS.txt
+
+================================================================================
+  RECAPITULATIF : OU SONT AFFICHES CES TEXTES ?
+================================================================================
+
+PAGE D'ACCUEIL (/) :
+--------------------
+- HERO_TITLE                   (Titre principal)
+- HERO_SUBTITLE                (Sous-titre)
+- HERO_CTA_TEXT                (Bouton d'appel)
+- HERO_CTA_SUBTEXT             (Texte sous bouton)
+- WHY_CHOOSE_TITLE             (Section "Pourquoi nous choisir")
+- WHY_CHOOSE_BLOCKS            (3 blocs d'avantages)
+- ZONE_TITLE                   (Zone d'intervention)
+- ZONE_DESCRIPTION             (Description zone)
+- GEOGRAPHIC_ZONES             (Zones geographiques)
+- COVERAGE_TYPES               (Types de communes)
+
+PAGES CATEGORIES (/category/graphiste) :
+-----------------------------------------
+- BREADCRUMB_HOME_TEXT         (Fil d'ariane)
+- CATEGORY_WHY_CHOOSE_TITLE    (Section "Pourquoi nous choisir")
+- WHY_CHOOSE_BLOCKS            (3 blocs d'avantages)
+- CATEGORY_FAQ_TITLE           (Section FAQ)
+- DEFAULT_FAQ                  (Questions/reponses)
+- CATEGORY_ZONE_TITLE          (Zone d'intervention)
+- ZONE_DESCRIPTION             (Description zone)
+- GEOGRAPHIC_ZONES             (Zones geographiques)
+- COVERAGE_TYPES               (Types de communes)
+
+PAGES VILLES (/address/graphiste/angouleme) :
+----------------------------------------------
+- BREADCRUMB_HOME_TEXT              (Fil d'ariane)
+- CITY_EXPERTISE_TITLE_TEMPLATE     (Titre expertise)
+- CITY_EXPERTISE_DESCRIPTION_TEMPLATE (Description expertise)
+- CITY_SERVICES_TITLE_TEMPLATE      (Titre services)
+
+TOUTES LES PAGES :
+------------------
+- PHONE_NUMBER                 (Header, footer, boutons)
+- PHONE_NUMBER_RAW             (Liens tel:)
+- BREADCRUMB_HOME_TEXT         (Fil d'ariane)
+
+================================================================================
+  COMMENT PERSONNALISER ?
+================================================================================
+
+ETAPE 1 : Modifier config.py
+-----------------------------
+1. Ouvrez config.py
+2. Modifiez les variables (lignes 12 a 118)
+3. Sauvegardez
+
+ETAPE 2 : Redemarrer l'application
+-----------------------------------
+1. Ctrl + C (arreter)
+2. python app.py (relancer)
+3. F5 (rafraichir navigateur)
+
+ETAPE 3 : Verifier le rendu
+----------------------------
+1. Allez sur http://localhost:8989
+2. Verifiez la page d'accueil
+3. Cliquez sur une categorie
+4. Cliquez sur une ville
+5. Verifiez que tous les textes sont corrects
+
+================================================================================
+  EXEMPLE COMPLET : REGION ILE-DE-FRANCE
+================================================================================
+
+# Configuration contact
+PHONE_NUMBER = '0123456789'
+PHONE_NUMBER_RAW = '0123456789'
+
+# Fil d'Ariane
+BREADCRUMB_HOME_TEXT = "Accueil IDF"
+
+# Page d'accueil - Pourquoi nous choisir
+WHY_CHOOSE_TITLE = "Pourquoi nos artisans franciliens ?"
+WHY_CHOOSE_BLOCKS = [
+    {
+        'icon': 'fa-star',
+        'title': 'Excellence',
+        'description': 'Les meilleurs artisans d\'Ile-de-France',
+        'color': 'yellow'
+    },
+    {
+        'icon': 'fa-shield-alt',
+        'title': 'Garantie',
+        'description': 'Tous nos travaux sont garantis decennale',
+        'color': 'blue'
+    },
+    {
+        'icon': 'fa-clock',
+        'title': 'Rapidite',
+        'description': 'Intervention sous 24h dans toute l\'IDF',
+        'color': 'green'
+    }
+]
+
+# Zone d'intervention
+ZONE_TITLE = "Notre Zone d'Intervention en Ile-de-France"
+ZONE_DESCRIPTION = "Nous couvrons l'ensemble des departements franciliens"
+
+GEOGRAPHIC_ZONES = [
+    {
+        'title': 'Paris & Petite Couronne',
+        'icon': 'tower emoji',
+        'description': 'Paris, 92, 93, 94'
+    },
+    {
+        'title': 'Grande Couronne',
+        'icon': 'tree emoji',
+        'description': '77, 78, 91, 95'
+    }
+]
+
+COVERAGE_TYPES = [
+    {
+        'title': 'Paris intra-muros',
+        'icon': 'building emoji',
+        'description': 'Tous les arrondissements'
+    },
+    {
+        'title': 'Banlieue proche',
+        'icon': 'city emoji',
+        'description': 'Nanterre, Creteil, Bobigny'
+    }
+]
+
+# Hero section
+HERO_TITLE = "Artisans Ile-de-France"
+HERO_SUBTITLE = "Les meilleurs professionnels franciliens"
+HERO_CTA_TEXT = "Appelez-nous : {phone_number}"
+HERO_CTA_SUBTEXT = "Intervention rapide - Devis gratuit"
+
+# Pages categories
+CATEGORY_WHY_CHOOSE_TITLE = "Pourquoi nos artisans IDF ?"
+CATEGORY_FAQ_TITLE = "Questions Frequentes"
+CATEGORY_ZONE_TITLE = "Nos Zones d'Intervention"
+
+DEFAULT_FAQ = [
+    {
+        'question': "Couvrez-vous toute l'Ile-de-France ?",
+        'answer': "Oui, nous intervenons dans les 8 departements franciliens."
+    },
+    {
+        'question': "Quel est le delai d'intervention ?",
+        'answer': "Nous intervenons sous 24h. Pour les urgences : {phone_number}"
+    },
+    {
+        'question': "Les devis sont-ils gratuits ?",
+        'answer': "Oui, tous nos devis sont gratuits et sans engagement."
+    }
+]
+
+# Pages villes
+CITY_EXPERTISE_TITLE_TEMPLATE = "Expertise {profession_lower} a {city}"
+CITY_EXPERTISE_DESCRIPTION_TEMPLATE = "Nos artisans de {city} sont reconnus pour leur professionnalisme."
+CITY_SERVICES_TITLE_TEMPLATE = "Services {profession_lower} proposes a {city}"
+
+# Metiers
+CATEGORIES = {
+    'plombier': 'Plombier',
+    'electricien': 'Electricien',
+    'serrurier': 'Serrurier'
+}
+
+# Departements
+DEPARTMENTS = {
+    '75': 'Paris',
+    '77': 'Seine-et-Marne',
+    '78': 'Yvelines',
+    '91': 'Essonne',
+    '92': 'Hauts-de-Seine',
+    '93': 'Seine-Saint-Denis',
+    '94': 'Val-de-Marne',
+    '95': 'Val-d\'Oise'
+}
+
+================================================================================
+  FICHIERS DE DOCUMENTATION
+================================================================================
+
+1. PERSONNALISATION_TEXTES.md
+   -> Guide complet des personnalisations (premiere vague)
+
+2. NOUVELLES_PERSONNALISATIONS.md
+   -> Guide des nouvelles personnalisations (hero, FAQ, villes)
+
+3. COMMENT_REDEMARRER.md
+   -> Instructions de redemarrage
+
+4. AJOUTER_METIER.md
+   -> Guide pour ajouter un nouveau metier
+
+5. CONFIGURATION.md
+   -> Guide de configuration generale
+
+6. TOUTES_PERSONNALISATIONS.txt (ce fichier)
+   -> Recapitulatif complet de TOUTES les personnalisations
+
+7. test_personnalisation.py
+   -> Script de test des variables
+
+================================================================================
+  EN CAS DE PROBLEME
+================================================================================
+
+ERREUR : SyntaxError
+--------------------
+Cause : Erreur de syntaxe Python
+Solution :
+- Verifiez les virgules
+- Verifiez les crochets/accolades fermees
+- Verifiez les guillemets
+
+ERREUR : Les textes ne changent pas
+------------------------------------
+Solution :
+1. Ctrl + C
+2. python app.py
+3. Ctrl + Shift + R (vider cache)
+
+ERREUR : {phone_number} s'affiche litteralement
+------------------------------------------------
+Solution :
+- C'est normal dans config.py
+- L'application remplace automatiquement
+- Si probleme : redemarrer
+
+================================================================================
+  RESUME RAPIDE
+================================================================================
+
+Toutes les personnalisations dans config.py :
+
+Lignes 12-13   : Numero de telephone
+Ligne 17       : Fil d'ariane
+Lignes 20-40   : Section "Pourquoi nous choisir" (page accueil)
+Lignes 43-82   : Zone d'intervention (page accueil)
+Lignes 85-88   : Hero section (page accueil)
+Lignes 91-93   : Titres sections (pages categories)
+Lignes 96-113  : FAQ (pages categories)
+Lignes 116-118 : Sections villes
+Lignes 123+    : Metiers
+Lignes 107+    : Departements
+
+MODIFICATION :
+1. Editez config.py
+2. Ctrl + C
+3. python app.py
+4. F5
+
+C'EST TOUT ! :)
+
+================================================================================
+  SITE 100% PERSONNALISABLE SANS TOUCHER AU CODE HTML !
+================================================================================

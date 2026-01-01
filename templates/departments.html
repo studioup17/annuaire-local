@@ -10,7 +10,7 @@
 <nav class="flex mb-8" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-3">
         <li class="inline-flex items-center">
-            <a href="/" class="text-gray-700 hover:text-blue-600">Accueil</a>
+            <a href="/" class="text-gray-700 hover:text-blue-600">{{ breadcrumb_home }}</a>
         </li>
         <li>
             <div class="flex items-center">
@@ -63,6 +63,16 @@
             Faites appel à un vitrier professionnel dans votre département. Pose, réparation et remplacement de vitrages :
             simple, double, triple vitrage, verres sécurisés et décoratifs. Nos experts interviennent également pour
             les baies vitrées, vérandas et miroiterie sur mesure.
+        </p>
+        {% else %}
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-briefcase text-3xl text-blue-600"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-800 mb-3">Professionnels {{ category_name }}</h2>
+        <p class="text-gray-600 leading-relaxed">
+            Trouvez rapidement un {{ category_name.lower() }} qualifié dans votre département. Nos professionnels
+            interviennent pour tous vos besoins et projets. Chaque spécialiste maîtrise son domaine pour vous garantir
+            un service de qualité, des conseils personnalisés et un accompagnement professionnel.
         </p>
         {% endif %}
     </div>
@@ -150,6 +160,22 @@
         <i class="fas fa-home text-blue-600 text-2xl mb-3"></i>
         <h4 class="font-semibold text-gray-800 mb-2">Vérandas</h4>
         <p class="text-sm text-gray-600">Conception et installation sur mesure</p>
+    </div>
+    {% else %}
+    <div class="bg-white rounded-lg shadow p-6 text-center">
+        <i class="fas fa-check-circle text-blue-600 text-2xl mb-3"></i>
+        <h4 class="font-semibold text-gray-800 mb-2">Services sur mesure</h4>
+        <p class="text-sm text-gray-600">Prestations personnalisées selon vos besoins</p>
+    </div>
+    <div class="bg-white rounded-lg shadow p-6 text-center">
+        <i class="fas fa-star text-blue-600 text-2xl mb-3"></i>
+        <h4 class="font-semibold text-gray-800 mb-2">Qualité professionnelle</h4>
+        <p class="text-sm text-gray-600">Expertise et savoir-faire reconnus</p>
+    </div>
+    <div class="bg-white rounded-lg shadow p-6 text-center">
+        <i class="fas fa-handshake text-blue-600 text-2xl mb-3"></i>
+        <h4 class="font-semibold text-gray-800 mb-2">Accompagnement</h4>
+        <p class="text-sm text-gray-600">Conseils et suivi personnalisés</p>
     </div>
     {% endif %}
 </div>
@@ -295,35 +321,42 @@
                     <p class="text-sm text-gray-600">Feuilleté sécurit, trempé, anti-effraction, décoratif, electrochrome. Conseil personnalisé selon usage.</p>
                 </div>
             </div>
+            {% else %}
+            <!-- FAQ générique depuis config.py -->
+            <div class="space-y-4">
+                {% for faq in default_faq[:2] %}
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-2">{{ faq.question }}</h4>
+                    <p class="text-sm text-gray-600">{{ faq.answer }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="space-y-4">
+                {% for faq in default_faq[2:] %}
+                <div>
+                    <h4 class="font-semibold text-gray-800 mb-2">{{ faq.question }}</h4>
+                    <p class="text-sm text-gray-600">{{ faq.answer }}</p>
+                </div>
+                {% endfor %}
+            </div>
             {% endif %}
         </div>
     </div>
 
     <!-- Regional Info -->
     <div class="bg-white rounded-lg shadow-lg p-8">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Notre Zone d'Intervention</h3>
+        <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">{{ zone_title }}</h3>
         <div class="text-center">
             <p class="text-gray-600 leading-relaxed mb-4">
-                Nous couvrons l'ensemble des départements du Sud-Est de la France, incluant les régions
-                Auvergne-Rhône-Alpes, Provence-Alpes-Côte d'Azur et Occitanie orientale.
+                {{ zone_description }}
             </p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                {% for coverage in coverage_types %}
                 <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <i class="fas fa-mountain text-blue-600 mb-2"></i>
-                    <p class="text-sm font-medium">Alpes</p>
+                    <div class="text-2xl mb-2">{{ coverage.icon }}</div>
+                    <p class="text-sm font-medium">{{ coverage.title }}</p>
                 </div>
-                <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <i class="fas fa-water text-blue-600 mb-2"></i>
-                    <p class="text-sm font-medium">Méditerranée</p>
-                </div>
-                <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <i class="fas fa-city text-blue-600 mb-2"></i>
-                    <p class="text-sm font-medium">Métropoles</p>
-                </div>
-                <div class="text-center p-3 bg-gray-50 rounded-lg">
-                    <i class="fas fa-tree text-blue-600 mb-2"></i>
-                    <p class="text-sm font-medium">Campagne</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
